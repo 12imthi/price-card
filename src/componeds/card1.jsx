@@ -2,10 +2,11 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-function Card1({ data }) {
+function Card1({ data,btnColorClass }) {
+  console.log(btnColorClass);
     console.log(data.features);
   return (
-    <div className="card col-4 d-flex justify-content-between">
+    <div className="card col-3 d-flex justify-content-between">
       <div className="card-body">
         <p className="card-title text-center">{data.plan}</p>
         <h1 className="card-title text-center">{data.price}</h1>
@@ -26,12 +27,14 @@ function Card1({ data }) {
           ))}
         </ul>
 
-        <div className="text-center d-flex justify-content-center">
+        <div className="text-center d-flex justify-content-center" >
           <button
+          style={{padding: '10px 90px '}}
             href="#"
-            className="btn btn-primary text-center"
-            style={{ padding: "10px 130px" }}
+            className={`btn text-center ${btnColorClass}`} // Dynamically set button color
           >
+           
+          
             {data.btn}
           </button>
         </div>

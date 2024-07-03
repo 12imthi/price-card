@@ -3,6 +3,19 @@ import Card1 from "./componeds/card1";
 import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
+
+  const getButtonColorClass = (planType) => {
+    switch (planType) {
+      case "FREE":
+        return "btn-primary";
+      case "PLUS":
+        return "btn-success";
+      case "PRO":
+        return "btn-warning";
+      default:
+        return "btn-primary";
+    }
+  };
   const plans = [
     {
       plan: 'FREE',
@@ -50,11 +63,13 @@ function App() {
       btn: 'BUTTON',
     },
   ];
+
+  
   return (
     <div class="container">
       <div class="row">
         {plans.map((card) => {
-          return <Card1 data={card}></Card1>;
+          return <Card1 data={card} btnColorClass={getButtonColorClass(card.plan)}></Card1>;
         })}
       </div>
     </div>
