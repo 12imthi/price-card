@@ -1,12 +1,27 @@
-import "./App.css";
-import Card1 from "./componeds/card1";
-import "bootstrap/dist/css/bootstrap.css";
+import React from 'react';
+import './PriceCard.css'; // You'll need to create this CSS file for styling
 
-function App() {
+const PriceCard = ({ plan, price, features }) => {
+  return (
+    <div className="price-card">
+      <h2>${price}/month</h2>
+      <ul>
+        {features.map((feature, index) => (
+          <li key={index} className={feature.included ? 'included' : 'not-included'}>
+            {feature.name}
+          </li>
+        ))}
+      </ul>
+      <button>BUTTON</button>
+    </div>
+  );
+};
+
+const App = () => {
   const plans = [
     {
       plan: 'FREE',
-      price: '$0/Month',
+      price: 0,
       features: [
         { name: 'Single User', included: true },
         { name: '50GB Storage', included: true },
@@ -17,11 +32,10 @@ function App() {
         { name: 'Free Subdomain', included: false },
         { name: 'Monthly Status Reports', included: false },
       ],
-      btn: 'BUTTON',
     },
     {
       plan: 'PLUS',
-      price: '$9/Month',
+      price: 9,
       features: [
         { name: '5 Users', included: true },
         { name: '50GB Storage', included: true },
@@ -32,11 +46,10 @@ function App() {
         { name: 'Free Subdomain', included: true },
         { name: 'Monthly Status Reports', included: false },
       ],
-      btn: 'BUTTON',
     },
     {
       plan: 'PRO',
-      price: '$49/Month',
+      price: 49,
       features: [
         { name: 'Unlimited Users', included: true },
         { name: '50GB Storage', included: true },
@@ -47,18 +60,16 @@ function App() {
         { name: 'Free Subdomain', included: true },
         { name: 'Monthly Status Reports', included: true },
       ],
-      btn: 'BUTTON',
     },
   ];
+
   return (
-    <div class="container">
-      <div class="row">
-        {plans.map((card) => {
-          return <Card1 data={card}></Card1>;
-        })}
-      </div>
+    <div className="app">
+      {plans.map((plan, index) => (
+        <PriceCard key={index} {...plan} />
+      ))}
     </div>
   );
-}
+};
 
 export default App;
